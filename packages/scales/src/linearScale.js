@@ -32,6 +32,7 @@ export const linearScale = (
     if (reverse === true) scale.domain([maxValue, minValue])
     else scale.domain([minValue, maxValue])
 
+    scale.nice()
     scale.type = 'linear'
     scale.stacked = stacked
 
