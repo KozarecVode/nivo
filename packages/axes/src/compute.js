@@ -77,19 +77,7 @@ const timeByType = {
 const timeTypes = Object.keys(timeByType)
 const timeIntervalRegexp = new RegExp(`^every\\s*(\\d+)?\\s*(${timeTypes.join('|')})s?$`, 'i')
 
-const appendTickValues = scale => {
-    const ticks = scale.ticks()
 
-    if (ticks && ticks.length > 2) {
-        const tickStep = ticks[1] - ticks[0]
-        const firstTick = ticks[0] - tickStep
-        const lastTick = ticks[ticks.length - 1] + tickStep
-        ticks.unshift(firstTick)
-        ticks.push(lastTick)
-    }
-
-    return ticks
-}
 
 export const getScaleTicks = (scale, spec) => {
     // specific values
@@ -101,7 +89,7 @@ export const getScaleTicks = (scale, spec) => {
     if (scale.ticks) {
         // default behaviour
         if (spec === undefined) {
-            return appendTickValues(scale)
+            return scale.ticks()
         }
 
         // specific tick count
